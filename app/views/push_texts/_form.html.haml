@@ -1,0 +1,27 @@
+= form_for @push_text do |f|
+  - if @push_text.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@push_text.errors.count, "error")} prohibited this push_text from being saved:"
+      %ul
+        - @push_text.errors.full_messages.each do |message|
+          %li= message
+
+  .row
+    .col-md-12
+      .box
+        .box-body
+
+          .form-group
+            = f.label :code, class: "put-form-label"
+            = f.text_field :code, class: "form-control"
+          .form-group
+            = f.label :registrant, class: "put-form-label"
+            = f.collection_select :registrant_id, @selectable_registrant, :id, :code, {prompt: ""}, {class: "form-control put-form-select"}
+          .form-group
+            = f.label :detail, class: "put-form-label"
+            = f.text_area :detail, class: "form-control"
+          .form-group
+            = f.label :pushed_at, class: "put-form-label"
+            %br
+            = f.datetime_select :pushed_at, {include_blank: false}, {class: "form-control put-form-datetime"}
+          = f.submit t("views.common.save_btn")

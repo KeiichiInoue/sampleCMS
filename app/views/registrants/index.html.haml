@@ -1,0 +1,31 @@
+%section.content-header
+  %h2= t("views.registrant.index_tit")
+
+%section.content.container-fluid
+  .row
+    .col-md-12
+      .box
+        .box-body
+          %table.table.table-striped
+            %tbody
+              %tr
+                %th= t("activerecord.attributes.registrant.code")
+                %th= t("activerecord.attributes.registrant.name")
+                %th= t("activerecord.attributes.registrant.device_info")
+                %th= t("activerecord.attributes.registrant.device_type")
+                %th
+                %th
+                %th
+                %th
+              - @registrants.each do |registrant|
+                %tr
+                  %td= registrant.code
+                  %td= registrant.name
+                  %td= registrant.device_info
+                  %td= @device_type_hash[registrant.device_type]
+                  %td= link_to t("views.registrant.push_txt_btn"), push_texts_path(reg_id: registrant.id), class: 'btn btn-xs btn-default'
+                  %td= link_to t("views.common.show_btn"), registrant, class: 'btn btn-xs btn-default'
+                  %td= link_to t("views.common.edit_btn"), edit_registrant_path(registrant), class: 'btn btn-xs btn-default'
+                  %td= link_to t("views.common.delete_btn"), registrant, method: :delete, data: { confirm: t("activerecord.confirms.messages.delete") }, class: 'btn btn-xs btn-default'
+
+  = link_to t("views.common.new_btn"), new_registrant_path, class: 'btn btn-default'

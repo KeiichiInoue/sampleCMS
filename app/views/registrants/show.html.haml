@@ -1,0 +1,30 @@
+%section.content-header
+  %h3= t("views.registrant.show_tit")
+
+%section.content.container-fluid
+  %p#notice= notice
+
+  .row
+    .col-md-8
+      .box.box-default
+        .box-body
+          %p
+            %b= t("activerecord.attributes.registrant.code") + ":"
+            %br
+            = @registrant.code
+          %p
+            %b= t("activerecord.attributes.registrant.name") + ":"
+            %br
+            = @registrant.name
+          %p
+            %b= t("activerecord.attributes.registrant.device_info") + ":"
+            %br
+            = @registrant.device_info
+          %p
+            %b= t("activerecord.attributes.registrant.device_type") + ":"
+            %br
+            = @device_type_hash[@registrant.device_type]
+
+  = link_to t("views.common.edit_btn"), edit_registrant_path(@registrant), class: 'btn btn-default'
+  \|
+  = link_to link_to t("views.common.back_btn"), registrants_path, class: 'btn btn-default'

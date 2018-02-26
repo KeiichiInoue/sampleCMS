@@ -1,0 +1,33 @@
+= form_for @registrant do |f|
+  - if @registrant.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@registrant.errors.count, "error")} prohibited this registrant from being saved:"
+      %ul
+        - @registrant.errors.full_messages.each do |message|
+          %li= message
+
+  .row
+    .col-md-12
+      .box
+        .box-body
+
+          .form-group
+            = f.label :code, class: "res-form-label"
+            = f.text_field :code, class: "form-control"
+          .form-group
+            = f.label :name, class: "res-form-label"
+            = f.text_field :name, class: "form-control"
+          .form-group
+            = f.label :device_info, class: "res-form-label"
+            = f.text_field :device_info, class: "form-control"
+          .form-group
+            = f.label :device_type, class: "res-form-label"
+            .radio
+              %label
+                = f.radio_button :device_type, "1"
+                = @device_type_hash["1"]
+            .radio
+              %label
+                = f.radio_button :device_type, "2"
+                = @device_type_hash["2"]
+          = f.submit t("views.common.save_btn")

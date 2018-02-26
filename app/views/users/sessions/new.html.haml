@@ -1,0 +1,20 @@
+.si
+
+  .si-container
+
+    .si-container-inner
+
+      %p.text--heavy-gray.title
+        ログイン
+
+      = form_for(@user, url: user_session_path, html: {method: :post}) do |f|
+        %p
+          = f.text_field :email, placeholder: 'メールアドレス', class: "input-text--rect--white-background"
+        %p
+          = f.password_field :password, placeholder: 'パスワード', class: "input-text--rect--white-background"
+        %p
+          = f.submit 'ログイン', class: "button--blue"
+
+      - if flash[:alert].present?
+        %p.validation_error_label--centered.text--red
+          = flash[:alert]

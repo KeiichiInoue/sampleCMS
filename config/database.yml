@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: password
+  host: localhost
+
+development:
+  <<: *default
+  database: aws_sns_mysql_development
+
+test:
+  <<: *default
+  database: aws_sns_mysql_test
+
+production:
+  <<: *default
+  database: aws_sns_mysql_production
+  username: aws_sns_mysql
+  password: <%= ENV['SKIN_CHART_DATABASE_PASSWORD'] %>

@@ -1,0 +1,2 @@
+module BulkInsertTextsHelper
+end

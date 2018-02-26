@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      registrant: 登録者
+    attributes:
+      registrant:
+        code: 'ID'
+        name: '名前'
+        device_info: '情報'
+        device_type: '種別'
+    errors:
+      models:
+        registrant:
+          attributes:
+    options:
+      registrant:
