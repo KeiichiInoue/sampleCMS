@@ -1,0 +1,11 @@
+ja:
+  views:
+    bulk_insert_text:
+      index_tit: 'テキスト一括登録'
+      registrant_lb: '登録者'
+      code_lb: 'コード'
+      detail_lb: '内容'
+      times_lb: '作成数'
+      time_lb: 'push時刻'
+      dow_lb: 'push曜日'
+      date_lb: 'push日付'

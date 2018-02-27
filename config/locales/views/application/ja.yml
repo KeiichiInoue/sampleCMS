@@ -1,0 +1,8 @@
+ja:
+  views:
+    application:
+      sys_name: '管理画面'
+      logout: 'ログアウト'
+      link_tit: '機能一覧'
+      registrants_link: '登録者一覧'
+      push_texts_link: 'テキスト一覧'

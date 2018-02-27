@@ -1,0 +1,7 @@
+ja:
+  views:
+    push_text:
+      index_tit: 'プッシュテキスト一覧'
+      show_tit: 'プッシュテキスト詳細'
+      edit_tit: 'プッシュテキスト編集'
+      new_tit: 'プッシュテキスト新規作成'

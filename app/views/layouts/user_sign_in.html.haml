@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title ログインページ
+
+    %meta{ charset: "utf-8" }
+
+    = stylesheet_link_tag "admin", media: "all"
+
+    = csrf_meta_tags
+
+  %body.user
+
+    .wrapper
+      = yield
+      

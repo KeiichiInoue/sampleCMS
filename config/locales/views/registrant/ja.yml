@@ -1,0 +1,8 @@
+ja:
+  views:
+    registrant:
+      index_tit: '登録者一覧'
+      show_tit: '登録者詳細'
+      edit_tit: '登録者編集'
+      new_tit: '登録者新規作成'
+      push_txt_btn: 'テキスト'

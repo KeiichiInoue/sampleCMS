@@ -1,0 +1,16 @@
+ja:
+  views:
+    common:
+      show_btn: '詳細'
+      edit_btn: '編集'
+      delete_btn: '削除'
+      new_btn: '追加'
+      save_btn: '保存'
+      back_btn: '戻る'
+      create_btn: '新規作成'
+      update_btn: '更新'
+      success_create: '%{record}を新規作成しました。'
+      success_update: '%{record}を更新しました。'
+      success_delete: '%{record}を削除しました。'
+      logout_confirm: 'ログアウトします。よろしいですか？'
+        

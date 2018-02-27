@@ -1,0 +1,9 @@
+%section.content-header
+  %h3= t("views.registrant.edit_tit")
+
+%section.content.container-fluid
+  = render 'form'
+
+  = link_to t("views.common.show_btn"), @registrant, class: 'btn btn-default'
+  \|
+  = link_to t("views.common.back_btn"), registrants_path, class: 'btn btn-default'

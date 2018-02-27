@@ -1,0 +1,45 @@
+!!!
+%html
+  %head
+    %title AwsSnsMysql
+
+    %meta{ charset: "utf-8" }
+    %meta{ content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", name: "viewport" }
+
+    = stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "manage", media: "all", 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "application", 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "manage", 'data-turbolinks-track': 'reload'
+
+  %body.skin-blue{style: "min-height: 100%;"}
+
+    .wrapper
+
+      %header.hold-transition.main-header.sidebar-mini
+        %a.logo{href: ""}
+          = t("views.application.sys_name")
+        %nav.navbar.navbar-static-to{role: "navigation"}
+          %a.sidebar-toggle{"data-toggle" => "push-menu", role: "button"}
+            %span.sr-only
+              Toggle navigation
+
+          .navbar-custom-menu
+            %ul.nav.navbar-nav
+              %li
+                = link_to user_session_path, method: :delete, data: { confirm: t("views.common.logout_confirm") }, class: 'text--white' do
+                  = t("views.application.logout")
+
+      %aside.main-sidebar
+        %section.sidebar
+          %ul.sidebar-menu{"data-widget" => "tree"}
+            %li.header
+              = t("views.application.link_tit")
+            %li
+              = link_to t("views.application.registrants_link"), registrants_url(:only_path => false)
+            %li
+              = link_to t("views.application.push_texts_link"), push_texts_url(:only_path => false)
+            %li
+              = link_to "テキスト一括登録", bulk_insert_texts_index_url(:only_path => false)
+
+      .content-wrapper
+        = yield

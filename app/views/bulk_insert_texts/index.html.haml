@@ -1,0 +1,63 @@
+%section.content-header
+  %h2= t("views.bulk_insert_text.index_tit")
+
+%section.content.container-fluid
+  .row
+    .col-md-12
+      .box
+        .box-body
+          = form_for @bulk_insert_texts, url: {controller: :bulk_insert_texts, action: :bulk_create } do |f|
+            .form-group
+              %label
+                = t("views.bulk_insert_text.registrant_lb")
+              .input-group
+                .input-group-addon
+                  = f.collection_select :registrant_id, @registrants, :id, :code, {prompt: false}, {class: "form-control bit-registrant"}
+
+            .form-group
+              %label
+                = t("views.bulk_insert_text.code_lb")
+              .input-group.bit-code
+                .input-group-addon
+                  = f.text_field :code, class: "form-control"
+
+            .form-group
+              %label
+                = t("views.bulk_insert_text.detail_lb")
+              .input-group.bit-detail
+                .input-group-addon
+                  = f.text_area :detail, class: "form-control"
+
+            .form-group
+              %label
+                = t("views.bulk_insert_text.times_lb")
+              .input-group.date
+                .input-group-addon
+                  = f.select :times, 1..10.times{ |p| [ p, p ] }, {prompt: false}, {class: "form-control bit-times"}
+
+            .form-group
+              %label
+                = t("views.bulk_insert_text.time_lb")
+              .input-group.bootstrap-timepicker.bit-time
+                .input-group-addon
+                  %i.fa.fa-clock-o
+                = f.text_field :time, class: "form-control pull-right timepicker"
+
+            .form-group
+              %label
+                = t("views.bulk_insert_text.dow_lb")
+              .input-group.date
+                .input-group-addon
+                  = f.collection_select :dow, @dows, :type_val, :type_name, {prompt: ""}, {class: "form-control bit-dow"}
+
+            .form-group
+              %label
+                = t("views.bulk_insert_text.date_lb")
+              .input-group.date.datepicker.bit-date
+                .input-group-addon
+                  %i.fa.fa-calendar
+                = f.text_field :date, class: "form-control pull-right"
+
+            = f.submit t("views.common.save_btn")
+
+= javascript_include_tag "project/bulk_insert_text", 'data-turbolinks-track': 'reload'

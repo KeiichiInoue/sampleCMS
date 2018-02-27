@@ -1,0 +1,42 @@
+%section.content-header
+  %h2= t("views.push_text.index_tit")
+
+%section.content.container-fluid
+  .put-search-form.box.box-default
+    .box-body
+      = search_form_for(@q, url: push_texts_path) do |f|
+        = f.label :code_ep, t("activerecord.attributes.push_text.code")
+        = f.search_field :code_eq
+
+        = f.label :registrant_id_ep, t("activerecord.attributes.push_text.registrant")
+        = f.collection_select :registrant_id_eq, @selectable_registrant, :id, :code, include_blank: true
+        = f.submit
+
+  .row
+    .col-md-12
+      .box
+        .box-body
+          %table.table.table-striped
+            %tbody
+              %tr
+                %th= t("activerecord.attributes.push_text.code")
+                %th= t("activerecord.attributes.push_text.registrant")
+                %th= t("activerecord.attributes.push_text.detail")
+                %th= t("activerecord.attributes.push_text.pushed_at")
+                %th
+                %th
+                %th
+
+              - @push_texts.each do |push_text|
+                %tr
+                  %td= push_text.code
+                  %td= push_text.registrant.code
+                  %td= push_text.detail
+                  %td= push_text.pushed_at
+                  %td= link_to t("views.common.show_btn"), push_text, class: 'btn btn-xs btn-default'
+                  %td= link_to t("views.common.edit_btn"), edit_push_text_path(push_text), class: 'btn btn-xs btn-default'
+                  %td= link_to t("views.common.delete_btn"), push_text, method: :delete, data: { confirm: t("activerecord.confirms.messages.delete") }, class: 'btn btn-xs btn-default'
+
+  = link_to t("views.common.new_btn"), bulk_insert_texts_index_path, class: 'btn btn-default'
+  \|
+  = link_to t("views.common.back_btn"), registrants_path, class: 'btn btn-default'

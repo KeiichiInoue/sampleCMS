@@ -1,0 +1,7 @@
+%section.content-header
+  %h3= t("views.push_text.new_tit")
+
+%section.content.container-fluid
+  = render 'form'
+
+  = link_to t("views.common.back_btn"), push_texts_path

@@ -1,0 +1,26 @@
+%section.content-header
+  %h3= t("views.push_text.show_tit")
+
+%section.content.container-fluid
+  %p#notice= notice
+
+  .row
+    .col-md-8
+      .box.box-default
+        .box-body
+          %p
+            %b= t("activerecord.attributes.push_text.code") + ":"
+            = @push_text.code
+          %p
+            %b= t("activerecord.attributes.push_text.registrant") + ":"
+            = @push_text.registrant.code
+          %p
+            %b= t("activerecord.attributes.push_text.detail") + ":"
+            = @push_text.detail
+          %p
+            %b= t("activerecord.attributes.push_text.pushed_at") + ":"
+            = @push_text.pushed_at
+
+  = link_to t("views.common.edit_btn"), edit_push_text_path(@push_text), class: 'btn btn-default'
+  \|
+  = link_to t("views.common.back_btn"), push_texts_path, class: 'btn btn-default'

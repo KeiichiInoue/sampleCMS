@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      push_text: プッシュテキスト
+    attributes:
+      push_text:
+        registrant: '受信者'
+        detail: '内容'
+        pushed_at: 'プッシュ日時'
+        code: 'コード'
+    errors:
+      models:
+        push_text:
+          attributes:
+    options:
+      push_text:
