@@ -21,7 +21,7 @@ set :deploy_to, '/usr/local/sampleCMS/deploy'
 set :pty, true
 
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'bundle', 'public/system', 'node_modules')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'node_modules')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -43,6 +43,8 @@ set :rbenv_ruby, '2.5.0'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
+
+set :bundle_path, -> { shared_path.join('vendor').join('bundle') }
 
 # set :git_strategy, Capistrano::Git::SubDirectoryStrategy
 
