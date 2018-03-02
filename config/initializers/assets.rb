@@ -3,7 +3,7 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 
-Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg *.otf *.png *.jpg *.jpeg *.gif *.scss *.sass *.js bootstrap/dist/css/bootstrap.css font-awesome/css/font-awesome.css common/ionicons.css common/bootstrap-datepicker3.css common/bootstrap-timepicker.css admin-lte/dist/css/AdminLTE.css admin-lte/dist/css/skins/skin-blue.css )
+Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg *.otf *.png *.jpg *.jpeg *.gif *.scss *.sass *.js )
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
