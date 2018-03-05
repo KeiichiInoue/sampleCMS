@@ -1,25 +1,54 @@
 class BulkInsertText
   include ActiveModel::Model
 
-  attr_accessor :registrant_id, :code, :detail, :date, :time, :dow, :detail, :code, :times
+  attr_accessor :registrant_ids, :code, :detail, :date, :time
 
   define_model_callbacks :save
   before_save :form_validation
 
   validates :code, presence: true
-  validates :time, presence: true
-  validates :times, presence: true
 
   def bulk_create
     if self.valid?
-      s_dts = BulkInsertText.get_date_time_arr(self.date, self.time, self.dow, self.times)
-      self.create_text_by_date_time(s_dts)
+      s_dt = self.get_date_time
+      self.create_registrants_text(s_dt)
     else
       return false
     end
   end
 
-  def self.get_date_time_arr(date, time, dow, s_times)
+  def get_date_time
+    # 設定
+    s_year = self.date.try(:split, "/").try(:[], 0)
+    s_month = self.date.try(:split, "/").try(:[], 1)
+    s_day = self.date.try(:split, "/").try(:[], 2)
+    s_hour = self.time.try(:split, ":").try(:[], 0)
+    s_minutes = self.time.try(:split, ":").try(:[], 1)
+
+    return DateTime.new(s_year.to_i, s_month.to_i, s_day.to_i, s_hour.to_i, s_minutes.to_i, 00)
+  end
+
+  def create_registrants_text(s_dt)
+    begin
+      ActiveRecord::Base.transaction do
+        self.registrant_ids.delete("0")
+        self.registrant_ids.each do |r_id|
+          push_text = PushText.create!(
+            code: self.code,
+            registrant_id: r_id.to_i,
+            detail: self.detail,
+            pushed_at: s_dt
+          )
+        end
+      end
+    rescue => e
+      return false
+    end
+  end
+
+  def self.get_date_times(date, time, dow, s_times)
+    # 現在未使用
+    # 複数日付一括作成処理用
     # 設定日時取得処理
 
     # 設定
@@ -56,7 +85,10 @@ class BulkInsertText
   end
 
   def create_text_by_date_time(s_dts)
+    # 現在未使用
+    # 複数日付一括作成処理用
     # 一括新規作成処理
+
     begin
       ActiveRecord::Base.transaction do
         s_dts.each do |s_dt|
