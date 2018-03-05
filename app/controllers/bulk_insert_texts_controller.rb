@@ -13,7 +13,7 @@ class BulkInsertTextsController < ApplicationController
 
     respond_to do |format|
       if @bulk_insert_texts.bulk_create
-        format.html { redirect_to push_texts_path(reg_id: @bulk_insert_texts.registrant_id), notice: t("views.common.success_create", record: record) }
+        format.html { redirect_to push_texts_path(code: @bulk_insert_texts.code), notice: t("views.common.success_create", record: record) }
       else
         format.html { render :index }
       end
@@ -31,7 +31,7 @@ class BulkInsertTextsController < ApplicationController
   end
 
   def bulk_insert_text_params
-    params.require(:bulk_insert_text).permit(:registrant_id, :code, :detail, :date, :time, :dow, :detail, :code, :times)
+    params.require(:bulk_insert_text).permit({registrant_ids: []}, :code, :detail, :date, :time)
   end
 
   def record

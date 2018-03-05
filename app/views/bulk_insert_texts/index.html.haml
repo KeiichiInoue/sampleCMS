@@ -10,9 +10,20 @@
             .form-group
               %label
                 = t("views.bulk_insert_text.registrant_lb")
-              .input-group
-                .input-group-addon
-                  = f.collection_select :registrant_id, @registrants, :id, :code, {prompt: false}, {class: "form-control bit-registrant"}
+
+              .box
+                .box-body
+                  %table.table.table-striped
+                    %tbody
+                      %tr
+                        %th
+                        %th= t("activerecord.attributes.registrant.code")
+                        %th= t("activerecord.attributes.registrant.name")
+                      - @registrants.each do |registrant|
+                        %tr
+                          %td= f.check_box :registrant_ids, {multiple: true}, registrant.id
+                          %td= registrant.code
+                          %td= registrant.name
 
             .form-group
               %label
@@ -30,10 +41,11 @@
 
             .form-group
               %label
-                = t("views.bulk_insert_text.times_lb")
-              .input-group.date
+                = t("views.bulk_insert_text.date_lb")
+              .input-group.date.datepicker.bit-date
                 .input-group-addon
-                  = f.select :times, 1..10.times{ |p| [ p, p ] }, {prompt: false}, {class: "form-control bit-times"}
+                  %i.fa.fa-calendar
+                = f.text_field :date, class: "form-control pull-right"
 
             .form-group
               %label
@@ -42,21 +54,6 @@
                 .input-group-addon
                   %i.fa.fa-clock-o
                 = f.text_field :time, class: "form-control pull-right timepicker"
-
-            .form-group
-              %label
-                = t("views.bulk_insert_text.dow_lb")
-              .input-group.date
-                .input-group-addon
-                  = f.collection_select :dow, @dows, :type_val, :type_name, {prompt: ""}, {class: "form-control bit-dow"}
-
-            .form-group
-              %label
-                = t("views.bulk_insert_text.date_lb")
-              .input-group.date.datepicker.bit-date
-                .input-group-addon
-                  %i.fa.fa-calendar
-                = f.text_field :date, class: "form-control pull-right"
 
             = f.submit t("views.common.save_btn")
 

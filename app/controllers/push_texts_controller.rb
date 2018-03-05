@@ -85,6 +85,9 @@ class PushTextsController < ApplicationController
     if !params[:q].present? && params[:reg_id].present?
       params[:q] = {}
       params[:q][:registrant_id_eq] = params[:reg_id].to_i
+    elsif !params[:q].present? && params[:code].present?
+      params[:q] = {}
+      params[:q][:code_eq] = params[:code]
     end
   end
 
